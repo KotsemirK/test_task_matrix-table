@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import MatrixForm from './components/MatrixForm/MatrixForm';
+import { MatrixProvider } from './context/MatrixContext';
+import MatrixTable from './components/MatrixTable/MatrixTable';
+import styles from './App.module.css';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [M, setM] = useState<number | null>(null);
+  const [N, setN] = useState<number | null>(null);
+  const [X, setX] = useState<number | null>(null);
+
+  const handleFormSubmit = (M: number, N: number, X: number) => {
+    setM(M);
+    setN(N);
+    setX(X);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className={styles.app}>
+      <h1 className={styles.app__header}>Matrix Generator</h1>
+      <div className={styles.app__content}>
+        <MatrixForm onSubmit={handleFormSubmit} />
+        {M !== null && N !== null && X !== null && (
+          <MatrixProvider M={M} N={N} X={X}>
+            <MatrixTable />
+          </MatrixProvider>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;

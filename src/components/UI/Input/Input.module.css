@@ -1,0 +1,39 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.input__label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input__field {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input__field:hover {
+  border-color: #d6d8db;
+  box-shadow: 0 0 5px #d6d8db;
+}
+
+.input__field:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.input__field_error {
+  border-color: #ff0000;
+}
+
+.input__error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+}
